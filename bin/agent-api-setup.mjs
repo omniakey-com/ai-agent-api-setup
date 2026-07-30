@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { realpathSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -273,11 +274,20 @@ async function main() {
   throw new Error(`Unknown command: ${command}`);
 }
 
-if (resolve(process.argv[1] ?? "") === fileURLToPath(import.meta.url)) {
+function isMainModule() {
+  if (!process.argv[1]) return false;
+  try {
+    return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+  }
+}
+
+if (isMainModule()) {
   main().catch((error) => {
     console.error(`Error: ${error.message}`);
     process.exitCode = 1;
   });
 }
 
-export { joinEndpoint, normalizeKeyEnv, parseArgs, probeEndpoint };
+export { isMainModule, joinEndpoint, normalizeKeyEnv, parseArgs, probeEndpoint };

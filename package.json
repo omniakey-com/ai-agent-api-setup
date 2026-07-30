@@ -4,8 +4,14 @@
   "description": "Configure and test custom AI APIs across popular coding agents.",
   "type": "module",
   "bin": {
+    "ai-agent-api-setup": "./bin/agent-api-setup.mjs",
     "agent-api-setup": "./bin/agent-api-setup.mjs"
   },
+  "files": [
+    "bin/",
+    "profiles/",
+    "src/"
+  ],
   "scripts": {
     "build": "node scripts/build-site.mjs",
     "test": "node --test",
