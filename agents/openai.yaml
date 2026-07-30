@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Agent API Setup"
+  short_description: "Configure and test custom AI API endpoints"
+  default_prompt: "Use $ai-agent-api-setup to configure this AI coding client for a custom API endpoint and verify it."

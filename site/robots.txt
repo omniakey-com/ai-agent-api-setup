@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://omniakey-com.github.io/ai-agent-api-setup/sitemap.xml

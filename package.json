@@ -1,0 +1,28 @@
+{
+  "name": "ai-agent-api-setup",
+  "version": "0.1.0",
+  "description": "Configure and test custom AI APIs across popular coding agents.",
+  "type": "module",
+  "bin": {
+    "agent-api-setup": "./bin/agent-api-setup.mjs"
+  },
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "test": "node --test",
+    "check": "npm run test && npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "ai-agent",
+    "claude-code",
+    "codex",
+    "openclaw",
+    "hermes-agent",
+    "opencode",
+    "api-gateway",
+    "llm"
+  ],
+  "license": "MIT"
+}

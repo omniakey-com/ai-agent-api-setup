@@ -1,0 +1,13 @@
+{
+  "id": "omniakey",
+  "name": "OmniAKey",
+  "description": "OpenAI, Anthropic, and Gemini-compatible endpoints on one host.",
+  "endpoints": {
+    "openai-chat": "https://api.omniakey.com/v1",
+    "openai-responses": "https://api.omniakey.com/v1",
+    "anthropic": "https://api.omniakey.com",
+    "gemini": "https://api.omniakey.com/v1beta"
+  },
+  "model": "gpt-5.4",
+  "keyEnv": "OMNIAKEY_API_KEY"
+}

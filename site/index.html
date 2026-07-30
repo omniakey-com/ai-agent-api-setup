@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Agent API Setup - Config Generator for Coding Agents</title>
+    <meta
+      name="description"
+      content="Generate custom API configuration for Claude Code, Codex, OpenClaw, Hermes Agent, OpenCode, Cursor, Cline, and Aider."
+    >
+    <meta name="theme-color" content="#f3f4ef">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AI Agent API Setup">
+    <meta
+      property="og:description"
+      content="A privacy-first config generator for custom AI API endpoints."
+    >
+    <meta
+      property="og:url"
+      content="https://omniakey-com.github.io/ai-agent-api-setup/"
+    >
+    <meta
+      property="og:image"
+      content="https://omniakey-com.github.io/ai-agent-api-setup/assets/og.png"
+    >
+    <link rel="canonical" href="https://omniakey-com.github.io/ai-agent-api-setup/">
+    <link rel="icon" href="./assets/omniakey-mark.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "AI Agent API Setup",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "macOS, Linux, Windows",
+        "isAccessibleForFree": true,
+        "url": "https://omniakey-com.github.io/ai-agent-api-setup/",
+        "codeRepository": "https://github.com/omniakey-com/ai-agent-api-setup"
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="./" aria-label="AI Agent API Setup home">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="./assets/omniakey-mark.svg" alt="">
+          </span>
+          <span>AI Agent API Setup</span>
+        </a>
+        <nav class="header-actions" aria-label="Project links">
+          <a
+            class="icon-link"
+            href="https://github.com/omniakey-com/ai-agent-api-setup"
+            title="View source on GitHub"
+          >
+            <svg aria-hidden="true"><use href="./assets/lucide.svg#external-link"></use></svg>
+            <span>GitHub</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-inner">
+          <div>
+            <p class="eyebrow">Open source config generator</p>
+            <h1 id="page-title">Point your agent at any compatible API.</h1>
+          </div>
+          <p class="intro-copy">
+            Choose a client and protocol. Get a config that references your local
+            environment, never your secret.
+          </p>
+        </div>
+      </section>
+
+      <section class="builder-band" aria-labelledby="builder-title">
+        <h2 id="builder-title" class="sr-only">Configuration builder</h2>
+        <div class="builder-grid">
+          <div id="config-form" class="controls">
+            <div class="control-group control-row">
+              <label for="profile">Profile</label>
+              <select id="profile" name="profile"></select>
+            </div>
+
+            <fieldset class="control-group">
+              <legend>Protocol</legend>
+              <div
+                id="protocol-options"
+                class="segmented protocol-options"
+                role="radiogroup"
+                aria-label="API protocol"
+              ></div>
+            </fieldset>
+
+            <fieldset class="control-group">
+              <legend>Client</legend>
+              <div
+                id="client-options"
+                class="client-grid"
+                role="radiogroup"
+                aria-label="AI client"
+              ></div>
+            </fieldset>
+
+            <fieldset id="os-control" class="control-group">
+              <legend>Operating system</legend>
+              <div
+                id="os-options"
+                class="segmented"
+                role="radiogroup"
+                aria-label="Operating system"
+              ></div>
+            </fieldset>
+
+            <div class="field-grid">
+              <div class="control-group field-wide">
+                <label for="base-url">Base URL</label>
+                <input
+                  id="base-url"
+                  name="base-url"
+                  type="url"
+                  inputmode="url"
+                  autocomplete="url"
+                  spellcheck="false"
+                  required
+                >
+              </div>
+              <div class="control-group">
+                <label for="model">Model ID</label>
+                <input
+                  id="model"
+                  name="model"
+                  type="text"
+                  autocomplete="off"
+                  spellcheck="false"
+                  required
+                >
+              </div>
+              <div class="control-group">
+                <label for="key-env">API key variable</label>
+                <input
+                  id="key-env"
+                  name="key-env"
+                  type="text"
+                  autocomplete="off"
+                  autocapitalize="characters"
+                  spellcheck="false"
+                  required
+                >
+              </div>
+            </div>
+
+            <details id="advanced-controls" class="advanced-controls">
+              <summary>Model limits</summary>
+              <div class="field-grid advanced-grid">
+                <div class="control-group">
+                  <label for="context-window">Context window</label>
+                  <input
+                    id="context-window"
+                    name="context-window"
+                    type="number"
+                    inputmode="numeric"
+                    min="1"
+                    step="1"
+                    value="128000"
+                  >
+                </div>
+                <div class="control-group">
+                  <label for="max-output">Max output tokens</label>
+                  <input
+                    id="max-output"
+                    name="max-output"
+                    type="number"
+                    inputmode="numeric"
+                    min="1"
+                    step="1"
+                    value="16384"
+                  >
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <section class="output-panel" aria-labelledby="output-title">
+            <div class="output-toolbar">
+              <div class="output-heading">
+                <div class="output-status-row">
+                  <span id="output-status" class="status-badge">Generated</span>
+                  <span id="output-target" class="output-target"></span>
+                </div>
+                <h2 id="output-title">Configuration</h2>
+              </div>
+              <div class="output-actions">
+                <button id="copy-button" class="action-button" type="button">
+                  <svg aria-hidden="true"><use href="./assets/lucide.svg#copy"></use></svg>
+                  <span>Copy</span>
+                </button>
+                <button id="download-button" class="action-button" type="button">
+                  <svg aria-hidden="true"><use href="./assets/lucide.svg#download"></use></svg>
+                  <span>Download</span>
+                </button>
+              </div>
+            </div>
+
+            <div id="error-message" class="error-message" role="alert" hidden></div>
+            <pre class="code-shell"><code id="config-output"></code></pre>
+
+            <div class="output-meta">
+              <div class="privacy-note">
+                <svg aria-hidden="true"><use href="./assets/lucide.svg#shield-check"></use></svg>
+                <p>
+                  API keys stay local. This page generates references to an
+                  environment variable and makes no network requests.
+                </p>
+              </div>
+
+              <div class="doctor-block">
+                <div class="meta-label">Local connection test</div>
+                <div class="doctor-command-row">
+                  <code id="doctor-command"></code>
+                  <button
+                    id="copy-doctor-button"
+                    class="icon-button"
+                    type="button"
+                    title="Copy local test command"
+                    aria-label="Copy local test command"
+                  >
+                    <svg aria-hidden="true"><use href="./assets/lucide.svg#copy"></use></svg>
+                  </button>
+                </div>
+              </div>
+
+              <ul id="config-notes" class="config-notes"></ul>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="matrix-section" aria-labelledby="matrix-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Current contract</p>
+            <h2 id="matrix-title">Compatibility matrix</h2>
+          </div>
+          <p>Generated means a file or shell snippet. Guided means verified UI steps.</p>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Client</th>
+                <th scope="col">OpenAI Chat</th>
+                <th scope="col">Responses</th>
+                <th scope="col">Anthropic</th>
+                <th scope="col">Output</th>
+                <th scope="col">Source</th>
+              </tr>
+            </thead>
+            <tbody id="compatibility-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="cli-section" aria-labelledby="cli-title">
+        <div>
+          <p class="eyebrow">Local CLI</p>
+          <h2 id="cli-title">Render and probe from your terminal.</h2>
+        </div>
+        <div class="cli-command">
+          <code>npx github:omniakey-com/ai-agent-api-setup list</code>
+          <button
+            id="copy-cli-button"
+            class="icon-button light"
+            type="button"
+            title="Copy CLI command"
+            aria-label="Copy CLI command"
+          >
+            <svg aria-hidden="true"><use href="./assets/lucide.svg#copy"></use></svg>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>MIT licensed</span>
+        <span>Maintained by OmniAKey</span>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <noscript>This configurator requires JavaScript to generate client settings.</noscript>
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>

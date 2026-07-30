@@ -1,0 +1,13 @@
+{
+  "id": "custom",
+  "name": "Custom endpoint",
+  "description": "Start with your own API base URL and model ID.",
+  "endpoints": {
+    "openai-chat": "https://api.example.com/v1",
+    "openai-responses": "https://api.example.com/v1",
+    "anthropic": "https://api.example.com",
+    "gemini": "https://api.example.com/v1beta"
+  },
+  "model": "your-model-id",
+  "keyEnv": "CUSTOM_API_KEY"
+}
